@@ -8,10 +8,10 @@
     <body>
         <h2>Saludo personalizado: </h2>
         <form action="Ejer02B.php">
-			<p>Introduce una hora: </p>
-			<input type="number" name="hora" placeholder="Hora..">
+            <p>Introduce una hora: </p>
+            <input type="number" name="hora" placeholder="Hora.." step="1" min="0" max="23">
 
             <input type="submit" value="Enviar">
-		</form>
+        </form>
     </body>
 </html>

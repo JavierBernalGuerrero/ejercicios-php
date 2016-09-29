@@ -12,10 +12,20 @@
             $variableB = $_GET['variableB'];
             $variableC = $_GET['variableC'];
 
-            $resultado1 = (-$variableB + (sqrt(pow($variableB, 2) - 4 * $variableA * variableC))) / 2 * $variableA;
-            $resultado2 = (-$variableB - (sqrt(pow($variableB, 2) - 4 * $variableA * variableC))) / 2 * $variableA;
-            echo "<p>Los resultados son: </p>";
-            echo "<p>a) $resultado1 ||| b) $resultado2</p>";
+            // El discriminante indica si la raiz se puede realizar o no.
+            $discriminante = pow($variableB, 2) - 4 * $variableA * variableC;
+            if ($discriminante < 0) {
+                echo "Error, el discriminante es negativo.";
+                
+            } else {
+                $resultado1 = (-$variableB + (sqrt(pow($variableB, 2) - 4 * $variableA * variableC))) / 2 * $variableA;
+                $resultado2 = (-$variableB - (sqrt(pow($variableB, 2) - 4 * $variableA * variableC))) / 2 * $variableA;
+                
+                echo "<p>Los resultados son: </p>";
+                echo "<p>a) $resultado1 ||| b) $resultado2</p>";
+              
+            }
+            
         ?>
     </body>
 </html>

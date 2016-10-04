@@ -18,14 +18,12 @@
         border-radius: 15px;
         text-align: center;
         margin: auto;
-        margin-top: 50px;
         padding: 10px;
-        width: 400px;
       }
       
       img {
         height: 70px;
-        width: 40px;
+        width: 50px;
       }
     </style>
   </head>
@@ -36,8 +34,14 @@
         $altura = $_GET['numeroIntroducido'];
 
         
-        for ($i = 0; $i < $altura; $i++) {
-          echo '<img src="http://latamirindera.cero.io/lataVacia.png"';
+        for ($y = 1; $y <= $altura; $y++) {
+          echo "<div>";
+          for ($x = 0; $x < $y; $x++) {
+            echo '<img src="http://latamirindera.cero.io/lataVacia.png">';
+            
+          }
+          echo "</div>";
+          
         }
       ?>
     </div>

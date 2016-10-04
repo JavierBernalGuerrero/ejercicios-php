@@ -32,12 +32,12 @@
       <h2>Piramide Rellena: </h2>
       <?php 
         $altura = $_GET['numeroIntroducido'];
-
+        $material = $_GET['material'];
         
         for ($y = 1; $y <= $altura; $y++) {
           echo "<div>";
           for ($x = 0; $x < $y; $x++) {
-            echo '<img src="http://latamirindera.cero.io/lataVacia.png">';
+            echo '<img src="', $material,'">';
             
           }
           echo "</div>";

@@ -24,7 +24,7 @@
       
       img {
         height: 70px;
-        width: 50px;
+        width: 60px;
       }
     </style>
   </head>
@@ -33,17 +33,18 @@
       <h2>Piramide Hueca: </h2>
       <?php 
         $altura = $_GET['numeroIntroducido'];
+        $material = $_GET['material'];
 
         
         for ($y = 1; $y <= $altura; $y++) {
           echo "<div>";
           for ($x = 0; $x < $y; $x++) {
             if ($y == $altura) {
-              echo '<img src="http://latamirindera.cero.io/lataVacia.png">';
+              echo '<img src="', $material,'">';
               
             } else {
               if ($x == 0 || $x == $y - 1) {
-                echo '<img src="http://latamirindera.cero.io/lataVacia.png" style="margin-right:', 15 * $y ,'px; margin-left:', 15 * $y ,'px;">';
+                echo '<img src="', $material,'" style="margin-right:', 15 * $y ,'px; margin-left:', 15 * $y ,'px;">';
               
               }
             }

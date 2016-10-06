@@ -44,31 +44,26 @@
       <h2>Caja fuerte: </h2>
       
       <?php
-        $combinacion = $_GET['combinacion'] * 10 + $_GET['digito'];
+        $combinacion = $_GET['combinacion'] . $_GET['digito'];
+        
         if (!isset($_GET['codigoOculto'])) {
           echo 'Introduce el numero secreto: '
             . '<form action="Ejer07.php">'
-             . '<input type="number" name="codigoOculto" step="1" min="1000" max="9999">'
+             . '<input type="number" name="codigoOculto" step="1" max="9999">'
              . '<input type="submit" value="Enviar">'
             . '</form>';
+          
         } else {
           $nSecreto = $_GET['codigoOculto'];
           echo '<img src="https://images-na.ssl-images-amazon.com/images/I/912XeCpuo6L._SL1500_.jpg" usemap="#teclas">';   
-          echo '<div id="display">',$combinacion,'</div>';
+          echo '<div id="display">',  $combinacion,'</div>';
           
         }
         
-        // Aqui cuento el numero de digitos que tiene la combinacion.
-        $contadorDigitos = 0;
-        while (floor($combinacion) != 0) {
-          $combinacion /= 10;
-          $contadorDigitos++;
-        }
-        
         // Aqui comienza el programa.
-        $combinacion = $_GET['combinacion'] * 10 + $_GET['digito'];
+        $combinacion = strval($_GET['combinacion']) . strval($_GET['digito']);
         
-        if ($contadorDigitos == 4) {
+        if (strlen($combinacion) == 4) {
           if ($combinacion == $nSecreto) {
             // ABIERTA
             echo '<div id="display"><a href="Ejer07.php">ABIERTA</a></div>';

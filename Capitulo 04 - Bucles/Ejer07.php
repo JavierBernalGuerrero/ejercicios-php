@@ -60,9 +60,6 @@
           
         }
         
-        // Aqui comienza el programa.
-        $combinacion = strval($_GET['combinacion']) . strval($_GET['digito']);
-        
         if (strlen($combinacion) == 4) {
           if ($combinacion == $nSecreto) {
             // ABIERTA

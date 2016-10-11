@@ -37,31 +37,48 @@
       </p>
       
       <?php
-        if (isset($_GET['arrayNumeros'])) {
-          $numeros = $_GET['arrayNumeros'];
-          echo var_dump($numeros), "<br>";
-        }
-        
         if (isset($_GET['nuevoNumero'])) {
-          $numeros[$contador] = $_GET['nuevoNumero'];
+          $numeros = $_GET['arrayNumeros'];
+          $numeroIntroducido = $_GET['nuevoNumero'];
+          
+          $numeros = $numeros . " " . $numeroIntroducido;
+          
           $contador = $_GET['contador'] + 1;
-          echo $contador, "<br>";
+          
+        } else {
+          $contador = 1;
         }
-        
-        
       
-        if (count($numeros) <= 10) {
+        if ($contador > 10) {
+          $numeros = substr($numeros, 1); // <- El primer valor es igual a "". 
+          // He podido comprobar esto gracias a la funcion "var_dump($numeros)".
+          $numeros = explode(" ", $numeros);
+          
+          
+          /*
+          foreach ($numeros as $numero) {
+            echo "$numero<br>";
+          }
+          */
+          
+          $maximo = max($numeros);
+          $minimo = min($numeros);
+          
+          echo "Maximo: $maximo<br>";
+          echo "Minimo: $minimo<br>";
+          
+          
+        } else {
+        
+          echo "Contador: $contador<br>";
+          
           echo 'Introduce el numero secreto: '
               . '<form action="Ejer02.php">'
-              . '<input type="number" name="nuevoNumero" step="1" min="0" autofocus="autofocus">'
+              . '<input type="number" name="nuevoNumero" step="1" min="0" autofocus="autofocus" required="required">'
               . '<input type="hidden" name="contador" value="', $contador, '">'
               . '<input type="hidden" name="arrayNumeros" value="', $numeros, '">'
               . '<input type="submit" value="Enviar">'
               . '</form>';
-          
-        } else {
-          
-          
         }
         
       ?>

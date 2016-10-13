@@ -57,6 +57,7 @@
         $arrayBidimensional = [];
         $numeroMinimo = PHP_INT_MAX;
         
+        // Crea el array con todos los valores aleatorios
         for ($fila = 0; $fila < 6; $fila++) {
           for ($columna = 0; $columna < 9; $columna++) {
             
@@ -69,10 +70,12 @@
           }
         }
         
+        
+        // Recoge el numero con menor valor y sus coordenadas
         for ($fila = 0; $fila < 6; $fila++) {
           for ($columna = 0; $columna < 9; $columna++) {
-            if ($numeroMinimo > $columna) {
-              $numeroMinimo = $columna;
+            if ($numeroMinimo > $arrayBidimensional[$fila][$columna]) {
+              $numeroMinimo = $arrayBidimensional[$fila][$columna];
               $filaMinimo = $fila;
               $columnaMinimo = $columna;
               
@@ -80,17 +83,22 @@
           }
         }
         
-        foreach ($arrayBidimensional as $fila) {
+        // Pinta la tabla con todos los valores
+        for ($fila = 0; $fila < 6; $fila++) {
           echo "<tr>";
-          foreach ($fila as $columna) {
-            if () {
-              // COMPRUEBA LAS DIAGONALES
+          for ($columna = 0; $columna < 9; $columna++) {
+            
+            // Pinta de azul el numero minimo
+            if ($numeroMinimo == $arrayBidimensional[$fila][$columna]) {
+              echo '<td style="background-color: blue;">', $arrayBidimensional[$fila][$columna], '</td>';
+              
             } else {
-              if ($numeroMinimo == $columna) {
-                echo '<td style="background-color: blue;">', $columna, '</td>';
+              // Pinta de verde las diagonales del numero minimo
+              if (abs($columnaMinimo - $columna) == abs($filaMinimo - $fila)) {
+                echo '<td style="background-color: green;">', $arrayBidimensional[$fila][$columna], '</td>';
 
               } else {
-                echo "<td>$columna</td>";
+                echo "<td>", $arrayBidimensional[$fila][$columna], "</td>";
 
               }
             }

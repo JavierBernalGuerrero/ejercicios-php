@@ -58,6 +58,8 @@
                         "negro" => "Black",
                         "crepusculo" => "Twilight",
                         "fuego" => "Fire" ];
+      
+      // Se utiliza para pedir de forma aleatoria los valores de estas claves
       $clavesDiccionario = ["silla", "rojo", "mesa", "telefono", "pantalla", "numero", "rueda",
                             "hombre", "dibujar", "correr", "raton", "perro", "gato", "comida",
                             "mano", "color", "blanco", "negro", "crepusculo", "fuego" ];
@@ -84,8 +86,15 @@
         $arrayPreguntas = explode(" ", $cadenaPreguntas);
 //        var_dump($arrayPreguntas);
         
-        
-        // COMPROBAR LOS RESULTADOS
+        echo "Preguntas | Respuestas<br>";
+        for ($i = 0; $i < count($arrayPreguntas); $i++) {
+          echo "<br>$arrayPreguntas[$i] | $arrayRespuestas[$i]: ";
+          if (array_search($arrayPreguntas[$i], $diccionario) == $arrayRespuestas[$i]) {
+            echo "Correcto";
+          } else {
+            echo "Error";
+          }
+        }
         
       } else {
         

@@ -73,8 +73,32 @@
       }
       echo '</table>';
       
-      // ARREGLAR EL ARRAYMODIFICADO
+      // Rotacion del array
       $arrayModificado = $arrayOriginal;
+      
+      for ($fila = 0; $fila < 6; $fila++) {
+        $auxiliar1 = $arrayModificado[$fila][11 - $fila];
+        for ($columna = 11 - $fila; $columna > $fila; $columna--) {
+          $arrayModificado[$fila][$columna] = $arrayModificado[$fila][$columna - 1];
+        } // Arriba
+
+        $auxiliar2 = $arrayModificado[11 - y][11 - y];
+        for ($columna = 11 - $fila; $columna > $fila + 1; $columna--) {
+          $arrayModificado[$columna][11 - $fila] = $arrayModificado[$columna - 1][11 - $fila];
+        } // Derecha
+        $arrayModificado [$fila + 1][11 - $fila] = $auxiliar1;
+
+        $auxiliar1 = $arrayModificado[11 - $fila][$fila];
+        for ($columna = $fila; $columna < 11 - $fila - 1; $columna++) {
+          $arrayModificado[11 - $fila][$columna] = $arrayModificado[11 - $fila][$columna + 1];
+        } // Abajo
+        $arrayModificado [11 - $fila][11 - $fila - 1] = $auxiliar2;
+
+        for ($columna = $fila; $columna < 11 - $fila - 1; $columna++) {
+          $arrayModificado[$columna][$fila] = $arrayModificado[$columna + 1][$fila];
+        }
+        $arrayModificado[11 - $fila - 1][$fila] = $auxiliar1;
+      }
       
       
       // Pinta el array modificado

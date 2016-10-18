@@ -28,6 +28,7 @@
     $_SESSION['contador'] = 0;
     $_SESSION['sumaNumerosImpares'] = 0;
     $_SESSION['sumaNumeros'] = 0;
+    $_SESSION['contadorImpares'] = 0;
     $_SESSION['maximoPar'] = 0;
     
   }
@@ -72,7 +73,6 @@
       </p>
 
       <?php
-        // CONFIRMAR
         if ($numeroIntroducido >= 0) {
           $contador++;
           
@@ -84,11 +84,10 @@
             . '<input type="submit" value="Enviar">'
             . '</form>';
         } else {
-          echo $contadorImpares . " " . $sumaNumerosImpares;
           
-          echo "Se han introducido " . $contador . " numeros.";
-          echo "La media de los numeros impares es: " . $sumaNumerosImpares / $contadorImpares;
-          echo "El mayor de los numeros pares es el " . $maximoPar;
+          echo "<p>Se han introducido " . $contador . " numeros.</p>";
+          echo "<p>La media de los numeros impares es: " . $sumaNumerosImpares / $contadorImpares . "</p>";
+          echo "<p>El mayor de los numeros pares es el " . $maximoPar . "</p>";
           
         }
       ?>

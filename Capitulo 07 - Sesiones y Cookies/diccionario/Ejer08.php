@@ -1,31 +1,38 @@
 <?php
-  $diccionario = ["silla" => "Chair", 
-                        "rojo" => "Red",
-                        "mesa" => "Table",
-                        "telefono" => "Phone",
-                        "pantalla" => "Screen",
-                        "numero" => "Number",
-                        "rueda" => "Wheel",
-                        "hombre" => "Man",
-                        "dibujar" => "Draw",
-                        "correr" => "Run",
-                        "raton" => "Mouse",
-                        "perro" => "Dog",
-                        "gato" => "Cat",
-                        "comida" => "Foot",
-                        "mano" => "Hand",
-                        "color" => "Color",
-                        "blanco" => "White",
-                        "negro" => "Black",
-                        "crepusculo" => "Twilight",
-                        "fuego" => "Fire" ];
+  if (count($_COOKIE) > 0) {
+    $diccionario = $_COOKIE;
+    
+  } else {
+    $diccionario = ["silla" => "Chair", 
+                          "rojo" => "Red",
+                          "mesa" => "Table",
+                          "telefono" => "Phone",
+                          "pantalla" => "Screen",
+                          "numero" => "Number",
+                          "rueda" => "Wheel",
+                          "hombre" => "Man",
+                          "dibujar" => "Draw",
+                          "correr" => "Run",
+                          "raton" => "Mouse",
+                          "perro" => "Dog",
+                          "gato" => "Cat",
+                          "comida" => "Foot",
+                          "mano" => "Hand",
+                          "color" => "Color",
+                          "blanco" => "White",
+                          "negro" => "Black",
+                          "crepusculo" => "Twilight",
+                          "fuego" => "Fire" ];
 
-  // Las coockies no pueden contener un array como las sesiones.
-  // Para trabajar con arrays en las coockies tenemos que crear una coockie por cada
-  // entrada del diccionario.
-  foreach ($diccionario as $key => $value) {
-    setcookie($key, $value, time() + 7*24*60*60);
+    // Las cookies no pueden contener un array como las sesiones.
+    // Para trabajar con arrays en las cookies tenemos que crear una coockie por cada
+    // entrada del diccionario.
+    foreach ($diccionario as $key => $value) {
+      // Para aislar las cookies para este ejercicio, declaramos otra ruta para almacenarlas,
+      // asi solo tendriamos que llamar a $_COOKIE para llamar a todas las palabras del diccionario.
+      setcookie($key, $value, time() + 7*24*60*60, "/diccionario");
 
+    }
   }
   
   if (isset($_GET['nuevaClave'])) {
@@ -63,7 +70,6 @@
     </style>
   </head>
   <body>
-    print_r($_COOKIE['diccionario']);
     <div>
       <h2>Diccionarios: </h2>
       <p>
@@ -92,9 +98,9 @@
       // -- Comienzo del programa que dirige el test y las correcciones --
       
       // Se utiliza para pedir de forma aleatoria los valores de estas claves
-      $clavesDiccionario = ["silla", "rojo", "mesa", "telefono", "pantalla", "numero", "rueda",
-                            "hombre", "dibujar", "correr", "raton", "perro", "gato", "comida",
-                            "mano", "color", "blanco", "negro", "crepusculo", "fuego" ];
+      foreach ($diccionario as $espanol => $ingles) {
+        $palabrasEspanol[] = $espanol;
+      }
       
       // Recogida de datos
       if (isset($_GET['contador'])) {
@@ -130,7 +136,7 @@
         
         $contador++;
         
-        $pregunta = $diccionario[$clavesDiccionario[rand(0, 19)]];
+        $pregunta = $diccionario[$palabrasEspanol[rand(0, count($palabrasEspanol) - 1)]];
         $cadenaPreguntas = $cadenaPreguntas . " " . $pregunta;
         
         echo $contador . "º Palabra: $pregunta";
@@ -145,7 +151,6 @@
         . '</form>';
       }
       
-      print_r($diccionario);
       ?>
     </div>
   </body>

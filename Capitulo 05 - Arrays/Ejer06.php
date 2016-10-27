@@ -60,7 +60,7 @@
           }
           
         } else {
-          echo $contador, 'º numero: '
+          echo $contador, 'º numero:'
           . '<form action="Ejer06.php">'
           . '<input type="number" name="nuevoNumero" step="1" min="0" autofocus="autofocus" required="required">'
           . '<input type="hidden" name="contador" value="', $contador, '">'

@@ -1,0 +1,29 @@
+/*
+ * Javier Bernal Guerrero
+ */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+}
+
+table {
+  margin: 30px auto;
+  width: 90%;
+}
+
+th {
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid black;
+}

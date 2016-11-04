@@ -3,10 +3,12 @@
     <meta charset="UTF-8">
     <title>Mantenimiento de clientes</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="css/estilo.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/estilo.css"/>
   </head>
   <body>
+    <header></header>
+    
     <?php
     // Conexion con la base de datos
     try {
@@ -20,6 +22,7 @@
     ?>
     
     <h2>Mantenimiento de clientes</h2>
+    <h4>Listado</h4>
     <table>
       <thead>
         <tr>
@@ -31,7 +34,29 @@
           <th>Eliminar</th>
         </tr>
       </thead>
-      <tfoot></tfoot>
+      <tfoot>
+        <tr>
+          <form action="paginas/insertarAccion.php" method="post">
+            <td>
+              <input type="text" name="dni" placeholder="DNI..." required="required">
+            </td>
+            <td>
+              <input type="text" name="nombre" placeholder="Nombre..." required="required">
+            </td>
+            <td>
+              <input type="text" name="direccion" placeholder="Direccion..." required="required">
+            </td>
+            <td>
+              <input type="text" name="telefono" placeholder="Telefono..." required="required">
+            </td>
+            <td colspan="2">
+              <button class="btn waves-effect waves-light" type="submit">
+                <i class="material-icons">add</i>
+              </button>
+            </td>
+          </form>
+        </tr>
+      </tfoot>
       <tbody>
         <?php
         // Consulta de datos del cliente
@@ -45,17 +70,17 @@
             <td><?= $cliente->direccion ?></td>
             <td><?= $cliente->telefono ?></td>
             <td>
-              <form action="modificarFormulario.php">
-                <input type="hidden" value="<?= $cliente->dni ?>">
-                <button class="btn waves-effect waves-light" type="submit" name="action">
+              <form action="paginas/modificarFormulario.php" method="post">
+                <input type="hidden" name="dni" value="<?= $cliente->dni ?>">
+                <button class="btn waves-effect orange" type="submit">
                   <i class="material-icons">mode_edit</i>
                 </button>
               </form>
             </td>
             <td>
-              <form action="eliminarFormulario.php">
-                <input type="hidden" value="<?= $cliente->dni ?>">
-                <button class="btn waves-effect waves-light" type="submit" name="action">
+              <form action="paginas/eliminarFormulario.php" method="post">
+                <input type="hidden" name="dni" value="<?= $cliente->dni ?>">
+                <button class="btn waves-effect red" type="submit">
                   <i class="material-icons">delete</i>
                 </button>
               </form>
@@ -66,5 +91,8 @@
         ?>
       </tbody>
     </table>
+    <footer>
+      <p><i class="material-icons">copyright</i> Javier Bernal Guerrero</p>
+    </footer>
   </body>
 </html>

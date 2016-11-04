@@ -11,13 +11,34 @@ body {
   width: 100%;
 }
 
-h2 {
+footer {
+  background-color: #26a69a;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+footer i {
+  vertical-align: bottom;
+}
+
+h2, h4 {
   text-align: center;
 }
 
 table {
-  margin: 30px auto;
+  margin: 20px auto;
   width: 90%;
+}
+
+table td, table th {
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+
+table td button {
+  margin-bottom: 5px;
 }
 
 th {
@@ -26,4 +47,19 @@ th {
 
 tbody tr {
   border-bottom: 1px solid black;
+}
+
+tfoot input {
+  font-weight: bold;
+  width: 100%;
+}
+
+#formularioEliminar {
+  text-align: center;
+  margin: 100px auto;
+  width: 80%;
+}
+
+#formularioEliminar input {
+  width: 20%;
 }

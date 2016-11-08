@@ -10,16 +10,15 @@ try {
 
 $consulta = $conexion->query("SELECT dni FROM cliente WHERE dni=" . $_POST['dni']);
 
-if ($consulta->rowCount() > 0) {
-  //echo '<h4>Error: El DNI introducido ya existe en la base de datos.</h4>';
+if ($consulta->rowCount() == 1) {
+  $delete = 'DELETE FROM cliente WHERE dni=' . $_POST['dni'];
+  //echo $delete;
   
-} else {
-  $insert = 'INSERT INTO cliente (dni, nombre, direccion, telefono) '
-              . 'VALUES (' . $_POST['dni'] . ', ' . $_POST['nombre'] . ', ' 
-                      . $_POST['direccion'] . ', ' . $_POST['telefono'] . ')';
-  //echo $insert;
-  
-  $conexion->exec($insert);
+  $conexion->exec($delete);
   
   header("Location: ../index.php");
+  
+} else {
+  echo '<h4>Existe mas de un DNI con ese valor.</h4>';
+  
 }

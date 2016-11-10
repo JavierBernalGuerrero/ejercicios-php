@@ -23,6 +23,11 @@ footer i {
   vertical-align: bottom;
 }
 
+#error {
+  color: red;
+  text-align: center;
+}
+
 h2, h4 {
   text-align: center;
 }
@@ -41,10 +46,6 @@ table td button {
   margin-bottom: 5px;
 }
 
-th {
-  text-align: center;
-}
-
 tbody tr {
   border-bottom: 1px solid black;
 }
@@ -54,12 +55,23 @@ tfoot input {
   width: 100%;
 }
 
-#formularioEliminar {
+#formularioEliminar, #formularioModificar {
   text-align: center;
   margin: 100px auto;
   width: 80%;
 }
 
-#formularioEliminar input {
-  width: 20%;
+#formularioModificar input {
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+#paginacion {
+  margin: 20px auto;
+  width: 90%;
+}
+
+#paginacion a {
+  float: right;
+  margin-right: 10px;
 }

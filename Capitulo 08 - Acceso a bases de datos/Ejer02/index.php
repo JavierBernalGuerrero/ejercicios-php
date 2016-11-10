@@ -17,6 +17,39 @@
       echo "No se ha podido establecer conexión con el servidor de bases de datos.<br>";
       echo "Error: " . $e->getMessage();
     }
+    
+    // LA PAGINACION NO FUNCIONA CORRECTAMENTE
+    if (isset($_GET['indicePaginacion'])) {
+      $limiteConsultas = $conexion->query('SELECT COUNT(*) FROM cliente') - 1;
+      switch ($_GET['indicePaginacion']) {
+        case 'first':
+          $_SESSION['indicePaginacion'] = 0;
+          break;
+        case 'back':
+          if ($_SESSION['indicePaginacion'] - 5 >= 0) {
+            $_SESSION['indicePaginacion'] -= 5;
+            
+          } else {
+            $_SESSION['indicePaginacion'] = 0;
+          }
+          break;
+        case 'next':
+          if ($_SESSION['indicePaginacion'] + 5 <= $limiteConsultas) {
+            $_SESSION['indicePaginacion'] += 5;
+            
+          } else {
+            $_SESSION['indicePaginacion'] = $limiteConsultas - $_SESSION['indicePaginacion'] + 5;
+          }
+          break;
+        case 'last':
+          $_SESSION['indicePaginacion'] = $limiteConsultas - $_SESSION['indicePaginacion'] + 5;
+          break;
+      }
+      
+    } else {
+      $_SESSION['indicePaginacion'] = 0;
+      
+    }
     ?>
     
     <h2>Mantenimiento de clientes</h2>
@@ -31,6 +64,20 @@
       }
     ?>
     <h4>Listado</h4>
+    <div id="paginacion">
+      <a href="index.php?indicePaginacion=last" class="waves-effect waves-light btn">
+        <i class="material-icons">last_page</i>
+      </a>
+      <a href="index.php?indicePaginacion=next" class="waves-effect waves-light btn">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </a>
+      <a href="index.php?indicePaginacion=back" class="waves-effect waves-light btn">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </a>
+      <a href="index.php?indicePaginacion=first" class="waves-effect waves-light btn">
+        <i class="material-icons">first_page</i>
+      </a>
+    </div>
     <table>
       <thead>
         <tr>
@@ -46,7 +93,7 @@
         <tr>
           <form action="paginas/insertarAccion.php" method="post">
             <td>
-              <input type="text" name="dni" placeholder="DNI..." required="required">
+              <input type="text" name="dni" placeholder="DNI..." required="required" autofocus="autofocus">
             </td>
             <td>
               <input type="text" name="nombre" placeholder="Nombre..." required="required">
@@ -68,7 +115,8 @@
       <tbody>
         <?php
         // Consulta de datos del cliente
-        $consulta = $conexion->query("SELECT dni, nombre, direccion, telefono FROM cliente");
+        $consulta = $conexion->query('SELECT dni, nombre, direccion, telefono '
+                                    . 'FROM cliente LIMIT ' . $_SESSION['indicePaginacion'] . ', 5');
         
         while ($cliente = $consulta->fetchObject()) {
         ?>

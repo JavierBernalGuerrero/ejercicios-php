@@ -10,16 +10,18 @@ try {
 
 $consulta = $conexion->query("SELECT dni FROM cliente WHERE dni=" . $_POST['dni']);
 
-if ($consulta->rowCount() > 0) {
-  header("Location: ../index.php?error=dniRepetido");
+if ($consulta->rowCount() == 1) {
+  $update = 'UPDATE cliente '
+              . 'SET nombre=' . $_POST['nombre'] 
+                . ', direccion=' . $_POST['direccion'] . ', telefono=' . $_POST['telefono']
+              . ' WHERE dni=' . $_POST['dni'];
+  //echo $update;
   
-} else {
-  $insert = 'INSERT INTO cliente (dni, nombre, direccion, telefono) '
-              . 'VALUES ("' . $_POST['dni'] . '", "' . $_POST['nombre'] . '", "' 
-                      . $_POST['direccion'] . '", "' . $_POST['telefono'] . '")';
-//  echo $insert;
-  
-  $conexion->exec($insert);
+  $conexion->exec($update);
   
   header("Location: ../index.php");
+  
+} else {
+  header("Location: ../index.php?error=dniNoEncontrado");
+  
 }

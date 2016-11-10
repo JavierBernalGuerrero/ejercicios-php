@@ -25,25 +25,36 @@
     ?>
     
     <h2>Mantenimiento de clientes</h2>
-    <h4>Modificación</h4>
-    <div id="formularioModificar">
-      <h5>¿Estas seguro de que quieres modificar este cliente?</h5>
-      <form action="modificarAccion.php" method="post">
-        <input type="text" name="dni" disabled="disabled" value="<?= $clienteElegido->dni ?>" required="required">
+    <h4>Eliminación</h4>
+    <div id="formularioEliminar">
+      <h5>¿Estas seguro de que quieres eliminar este cliente?</h5>
+      <table>
+        <thead>
+          <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <tr>
+            <td><?= $clienteElegido->dni ?></td>
+            <td><?= $clienteElegido->nombre ?></td>
+            <td><?= $clienteElegido->direccion ?></td>
+            <td><?= $clienteElegido->telefono ?></td>
+          </tr>
+        </tbody>
+      </table>
+      <form action="eliminarAccion.php" method="post">
         <input type="hidden" name="dni" value="<?= $clienteElegido->dni ?>">
-        <input type="text" name="nombre" placeholder="Nombre..." value="<?= $clienteElegido->nombre ?>" required="required" autofocus="autofocus">
-        <input type="text" name="direccion" placeholder="Direccion..." value="<?= $clienteElegido->direccion ?>" required="required">
-        <input type="text" name="telefono" placeholder="Telefono..." value="<?= $clienteElegido->telefono ?>" required="required">
-
-        <br>
-
         <a href="../index.php" class="waves-effect waves-light btn">
           <i class="material-icons">undo</i>
         </a>
-        <button class="btn waves-effect orange" type="submit">
-          <i class="material-icons">mode_edit</i>
+        <button class="btn waves-effect red" type="submit">
+          <i class="material-icons">delete</i>
         </button>
-        
       </form>
     </div>
   </body>
